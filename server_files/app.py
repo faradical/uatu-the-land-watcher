@@ -19,7 +19,7 @@ def home():
 def api_home():
     return render_template("api_home.html")
 
-@app.route("/cheapest_state")
+@app.route("/api/cheapest_state")
 def cheapest_state():
     states = []
     for coll in DB.collection_names():
@@ -36,6 +36,17 @@ def cheapest_state():
 
     return jsonify({"state": state, "median": minimum})
 
+@app.route("/api/get_data", methods=['GET', 'POST'])
+def search():
+    print("Search route accessed.")
+    search_term = request.get_json(force=True)
+    print(search_term)
+
+    # Query database for search term.
+
+    return "Server says you searched for: " + str(search_term['search'])
+
+
 # RUN APPLICATION
 if __name__ == "__main__":
-	app.run()
+	app.run(debug=True)
