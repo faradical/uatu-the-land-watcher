@@ -40,7 +40,11 @@ function initMap() {
     });
 }
 
-d3.select("#pac-input").on('keydown', (e) => {
+
+
+
+
+d3.select("#pac-input").on('keydown', function(e){
     if (e.code === 'Enter'){
         let search = d3.select("#pac-input").property("value")
         console.log(search)
@@ -49,4 +53,13 @@ d3.select("#pac-input").on('keydown', (e) => {
             console.log(response.data)
         })
     }
+})
+d3.select("#my_button").on('click', function(){
+    let search = d3.select("#pac-input").property("value")
+    console.log(search)
+    data = {'search': search}
+    POST("/api/get_data", data).then(response => {
+        console.log(response.data)
+    })
+
 })

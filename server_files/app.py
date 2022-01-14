@@ -3,6 +3,8 @@ from flask import Flask, jsonify, request, render_template
 from pymongo import MongoClient as MC
 import pandas as pd
 
+stuff = "testing by Rick Mora"
+
 # ESTABLISH DATABASE CONNECTION
 client = MC()
 DB = client.real_estate
@@ -17,7 +19,7 @@ def home():
 
 @app.route("/api")
 def api_home():
-    return render_template("api_home.html")
+    return render_template("api_home.html", title=stuff)
 
 @app.route("/api/cheapest_state")
 def cheapest_state():
