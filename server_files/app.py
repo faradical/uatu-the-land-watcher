@@ -2,6 +2,7 @@
 from flask import Flask, jsonify, request, render_template
 from pymongo import MongoClient as MC
 import pandas as pd
+print(pd.__version__)
 
 
 # ESTABLISH DATABASE CONNECTION
