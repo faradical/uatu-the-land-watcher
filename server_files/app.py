@@ -3,10 +3,12 @@ from flask import Flask, jsonify, request, render_template
 from pymongo import MongoClient as MC
 import pandas as pd
 
-stuff = "testing by Rick Mora"
 
 # ESTABLISH DATABASE CONNECTION
-client = MC()
+# client = MC()
+import pymongo
+client = pymongo.MongoClient("mongodb://uatu:#watch!@uatu-cluster-shard-00-00.c4ylx.mongodb.net:27017,uatu-cluster-shard-00-01.c4ylx.mongodb.net:27017,uatu-cluster-shard-00-02.c4ylx.mongodb.net:27017/real_estate?ssl=true&replicaSet=atlas-10fsbj-shard-0&authSource=admin&retryWrites=true&w=majority")
+
 DB = client.real_estate
 
 # DEFINE FLASK APPLICATION

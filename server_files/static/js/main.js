@@ -41,6 +41,33 @@ function initMap() {
 }
 
 
+function SearchData(){
+    let search = d3.select("#pac-input").property("value")
+    console.log(search)
+    data = {'search': search}
+    POST("/api/get_data", data).then(response => {
+        console.log(response.data)
+    })
+}
+
+
+
+window.addEventListener('load', function () {
+    const searchbar = document.getElementById("pac-input")
+    const parent_div = searchbar.parentNode;
+    const div = d3.select(parent_div)
+    let button = div.insert("button","#pac-input")
+    button.text("Search").attr("id", "my_button")
+
+    d3.select("#my_button").on('click', function(){
+        let search = d3.select("#pac-input").property("value")
+        console.log(search)
+        data = {'search': search}
+        POST("/api/get_data", data).then(response => {
+            console.log(response.data)
+        })
+    })
+})
 
 
 
@@ -53,13 +80,4 @@ d3.select("#pac-input").on('keydown', function(e){
             console.log(response.data)
         })
     }
-})
-d3.select("#my_button").on('click', function(){
-    let search = d3.select("#pac-input").property("value")
-    console.log(search)
-    data = {'search': search}
-    POST("/api/get_data", data).then(response => {
-        console.log(response.data)
-    })
-
 })
